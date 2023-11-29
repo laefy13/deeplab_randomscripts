@@ -8,11 +8,10 @@ def bmp_to_jpg(input_path, output_path):
     bmp_image.convert("RGB").save(output_path, "JPEG")
 
 # Example usage
-
-for root,dir,files in os.walk('datasets/mask1'):
+if not os.path.exists('datasets/VOCdevkit/VOC2012/JPEGImages/'):
+  os.makedirs('datasets/VOCdevkit/VOC2012/JPEGImages/')
+for root,dir,files in os.walk('TongeImageDataset/groundtruth/images'):
     for file in files:
         og_path = root+ '/' + file
-        nahh = f'datasets/VOCdevkit/VOC2012/SegmentationClass/{file[:-3]}jpg'
-        # print(nahh)
-        # exit()
+        nahh = f'datasets/VOCdevkit/VOC2012/JPEGImages/{file[:-3]}jpg'
         bmp_to_jpg(og_path, nahh)
